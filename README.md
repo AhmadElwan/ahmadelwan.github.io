@@ -55,19 +55,23 @@ The US publishing client must never be named anywhere in this repo (text, metada
 
 - Semantic HTML, skip link, keyboard focus styles, reduced-motion support
 - SEO: metadata, Open Graph / Twitter cards (`app/opengraph-image.png`, made from `brand/templates/share-card.html`), JSON-LD `Person`, `sitemap.xml`, `robots.txt`, web manifest, favicon and Apple touch icon
-- Security headers (CSP, HSTS, frame, referrer and permissions policies) set in `next.config.mjs`
 - Custom 404 and error pages, self-hosted fonts with size-matched fallbacks (no layout jump)
 - Measured with Lighthouse on a mobile profile: Performance 100, Accessibility 100, Best Practices 100, SEO 100
 
 ## Deploy
 
-1. Push the project to a GitHub repository, then import it in Vercel (framework: Next.js, no settings to change). Any host that runs Next.js 16 on Node 20.9+ works.
-2. Add the environment variables from `.env.example` in the host's settings:
-   - `SITE_URL`: your domain, for example `https://ahmadelwan.dev` (this also switches indexing on; leave it unset on previews).
-   - `WEB3FORMS_KEY`: optional; the key is already set in `data/profile.ts`.
-3. Add the domain in the host's settings and follow its DNS instructions. HTTPS is automatic on Vercel.
-4. After the first deploy: open the homepage, send a test message through the form, and check the link preview by pasting the URL into LinkedIn's Post Inspector (<https://www.linkedin.com/post-inspector/>). Then submit `/sitemap.xml` in Google Search Console.
-5. Optional: put a PDF CV at `public/ahmad-elwan-cv.pdf` and set `contact.cv` to `"/ahmad-elwan-cv.pdf"` in `data/profile.ts` (a "Download CV" button appears), and set `photo` to show your portrait in the hero.
+The site is exported as plain static files (`output: "export"` in `next.config.mjs`), so it runs on any static host. It is set up for **GitHub Pages**:
+
+1. The repository is named `ahmadelwan.github.io` and is public (GitHub Pages is free for public repositories).
+2. In the repository settings, Pages uses **GitHub Actions** as its source.
+3. `.github/workflows/deploy.yml` builds the site and publishes it on every push to `main`. The public address is set there as `SITE_URL` (which also switches search-engine indexing on).
+4. To use a custom domain later: buy it, add it under Settings, Pages, Custom domain, set the DNS records GitHub shows, and change `SITE_URL` in `deploy.yml` to the new address.
+
+Other hosts (Vercel, Netlify, Cloudflare Pages) also work: build with `npm run build` and publish the `out` folder, with `SITE_URL` set. Static hosts that allow custom headers should add the security headers (CSP, HSTS, frame and referrer policies); GitHub Pages cannot.
+
+After any deploy: open the homepage, send a test message through the form, and check the link preview by pasting the URL into LinkedIn's Post Inspector (<https://www.linkedin.com/post-inspector/>). Then submit `/sitemap.xml` in Google Search Console.
+
+Optional: put a PDF CV at `public/ahmad-elwan-cv.pdf` and set `contact.cv` to `"/ahmad-elwan-cv.pdf"` in `data/profile.ts`, and set `photo` to show your portrait in the hero.
 
 Checks before every release: `npm run check`.
 
