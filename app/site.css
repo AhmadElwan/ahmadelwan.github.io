@@ -1420,11 +1420,12 @@ body {
   transform: rotate(10deg) scaleX(-1);
   transform-origin: 50% 50%;
   pointer-events: none;
-  --br-s: var(--ink);
-  --br-l: var(--paper);
-  --br-l2: color-mix(in srgb, var(--paper) 78%, var(--accent));
-  --br-o: #6b7b32;
-  --br-h: var(--accent);
+  z-index: 1;
+  --br-s: var(--paper);
+  --br-l: var(--accent);
+  --br-l2: color-mix(in srgb, var(--accent) 68%, var(--paper));
+  --br-o: #c3cf7a;
+  --br-h: var(--ink);
 }
 .s-foot-id {
   display: inline-flex;
@@ -1701,4 +1702,35 @@ body {
 .s-form button:disabled {
   opacity: 0.7;
   cursor: progress;
+}
+
+/* contact: a coffee corner behind the olive branch, with soft rings like the hero art */
+.s-contact {
+  --cs: clamp(140px, 21vw, 310px);
+}
+.s-contact::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 0;
+  width: var(--cs);
+  aspect-ratio: 1;
+  border-radius: 0 calc(var(--r-lg) + 12px) 0 100%;
+  background:
+    repeating-radial-gradient(circle at 100% 0, transparent 0 26px, rgba(138, 154, 91, 0.32) 26px 27.5px),
+    var(--ink);
+  pointer-events: none;
+}
+.s-contact > .s-wrap {
+  position: relative;
+  z-index: 1;
+}
+.s-contact .s-contact-branch {
+  width: calc(var(--cs) * 1.02);
+  right: calc(var(--cs) * -0.04);
+  top: calc(var(--cs) * 0.05);
+}
+.s-contact .s-big span {
+  display: block;
 }
