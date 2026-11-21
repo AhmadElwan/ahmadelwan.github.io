@@ -22,7 +22,7 @@ export default function Page() {
     <>
       <script
         type="application/ld+json"
-        // Escape "<" so the JSON can never close the script tag.
+
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }}
       />
       <SitePage />

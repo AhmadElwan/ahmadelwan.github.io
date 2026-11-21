@@ -1,16 +1,11 @@
 import type { ReactElement } from "react";
 
-/**
- * Abstract Swiss-style covers for the project cards. They are original shapes only:
- * no screenshots, logos or client material, so client work stays confidential.
- */
 const W = 400;
 const H = 250;
 
 const bg = (cls: string) => <rect className={cls} width={W} height={H} />;
 
 const covers: ReactElement[] = [
-  // 0 Publisher website: abstract page wireframe
   <>
     {bg("p")}
     <rect className="w si3" x="44" y="26" width="312" height="200" />
@@ -26,7 +21,7 @@ const covers: ReactElement[] = [
     <rect className="w si3" x="246" y="126" width="94" height="40" />
     <rect className="i" x="246" y="178" width="94" height="24" />
   </>,
-  // 1 Online games: 3x3 board
+
   <>
     {bg("i")}
     {[0, 1, 2].flatMap((r) =>
@@ -38,13 +33,19 @@ const covers: ReactElement[] = [
           <g key={k}>
             <rect className="sp3" x={x} y={y} width="52" height="52" fill="none" />
             {k % 4 === 0 && <circle className="r" cx={x + 26} cy={y + 26} r="16" />}
-            {(k === 2 || k === 6) && <path className="sp3" d={`M${x + 12} ${y + 12}L${x + 40} ${y + 40}M${x + 40} ${y + 12}L${x + 12} ${y + 40}`} fill="none" />}
+            {(k === 2 || k === 6) && (
+              <path
+                className="sp3"
+                d={`M${x + 12} ${y + 12}L${x + 40} ${y + 40}M${x + 40} ${y + 12}L${x + 12} ${y + 40}`}
+                fill="none"
+              />
+            )}
           </g>
         );
       }),
     )}
   </>,
-  // 2 Registration wall: text behind a gate
+
   <>
     {bg("p")}
     {Array.from({ length: 11 }, (_, i) => (
@@ -55,7 +56,7 @@ const covers: ReactElement[] = [
     <rect className="w" x="124" y="124" width="152" height="24" />
     <rect className="i" x="124" y="162" width="152" height="26" />
   </>,
-  // 3 Consent & ads: preference toggles
+
   <>
     {bg("r")}
     <rect className="w si3" x="60" y="34" width="280" height="182" />
@@ -67,7 +68,7 @@ const covers: ReactElement[] = [
       </g>
     ))}
   </>,
-  // 4 Agentic newsletters: nodes into a letter
+
   <>
     {bg("p")}
     {[60, 125, 190].map((y, i) => (
@@ -81,7 +82,7 @@ const covers: ReactElement[] = [
     <rect className="w si3" x="282" y="92" width="96" height="66" />
     <path className="si3" d="M282 92L330 130L378 92" fill="none" />
   </>,
-  // 5 HR platform: calendar + clock
+
   <>
     {bg("p")}
     <rect className="w si3" x="40" y="34" width="224" height="182" />
@@ -90,13 +91,15 @@ const covers: ReactElement[] = [
       const c = i % 7;
       const r = Math.floor(i / 7);
       const on = [3, 9, 10, 16, 22].includes(i);
-      return <circle key={i} className={on ? "r" : "i fade2"} cx={62 + c * 30} cy={92 + r * 30} r={on ? 9 : 4} />;
+      return (
+        <circle key={i} className={on ? "r" : "i fade2"} cx={62 + c * 30} cy={92 + r * 30} r={on ? 9 : 4} />
+      );
     })}
     <circle className="w si3" cx="328" cy="150" r="46" />
     <path className="si3" d="M328 150V122M328 150L348 162" fill="none" strokeLinecap="square" />
     <circle className="r" cx="328" cy="150" r="5" />
   </>,
-  // 6 CRM funnel
+
   <>
     {bg("i")}
     <polygon className="p" points="50,34 350,34 322,74 78,74" />
@@ -104,7 +107,7 @@ const covers: ReactElement[] = [
     <polygon className="p op2" points="116,130 284,130 262,170 138,170" />
     <polygon className="r" points="144,178 256,178 240,218 160,218" />
   </>,
-  // 7 SEO & ads: search results
+
   <>
     {bg("r")}
     <rect className="w si3" x="50" y="34" width="300" height="42" rx="21" />
@@ -115,7 +118,13 @@ const covers: ReactElement[] = [
       <g key={i}>
         <rect className={i === 0 ? "i" : "w si3"} x="50" y={96 + i * 46} width="300" height="38" />
         <circle className={i === 0 ? "r" : "i"} cx="74" cy={115 + i * 46} r="8" />
-        <rect className={i === 0 ? "p" : "i"} x="96" y={108 + i * 46} width={i === 0 ? 170 : 120} height="7" />
+        <rect
+          className={i === 0 ? "p" : "i"}
+          x="96"
+          y={108 + i * 46}
+          width={i === 0 ? 170 : 120}
+          height="7"
+        />
         <rect className={i === 0 ? "p op" : "i fade"} x="96" y={121 + i * 46} width="80" height="6" />
       </g>
     ))}
@@ -124,7 +133,13 @@ const covers: ReactElement[] = [
 
 export function Cover({ index }: { index: number }) {
   return (
-    <svg className="s-cover" viewBox={`0 0 ${W} ${H}`} role="presentation" aria-hidden="true" preserveAspectRatio="xMidYMid slice">
+    <svg
+      className="s-cover"
+      viewBox={`0 0 ${W} ${H}`}
+      role="presentation"
+      aria-hidden="true"
+      preserveAspectRatio="xMidYMid slice"
+    >
       {covers[index % covers.length]}
     </svg>
   );

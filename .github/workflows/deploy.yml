@@ -1,4 +1,3 @@
-# Builds the site and publishes it to GitHub Pages every time main changes.
 name: Deploy to GitHub Pages
 
 on:
@@ -27,7 +26,6 @@ jobs:
       - run: npm ci
       - run: npm run build
         env:
-          # The public address of the site. Change this if you add a custom domain.
           SITE_URL: https://ahmadelwan.github.io
       - uses: actions/upload-pages-artifact@v3
         with:

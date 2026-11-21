@@ -1,12 +1,3 @@
-/**
- * Single source of truth for the whole site.
- * Edit this file to change any text, link or project; no component changes needed.
- *
- * CONFIDENTIALITY: Never write the name of the US publishing client anywhere in
- * this repository (text, alt text, filenames, comments, metadata, images).
- * Refer to them as "a major US media publisher".
- */
-
 export type Link = { label: string; href: string };
 
 export type WorkArea = {
@@ -32,36 +23,24 @@ export const profile = {
   title: "Software Engineer",
   location: "Amman, Jordan",
 
-  /** Short line shown next to a pulsing dot in the hero. Leave empty to hide it. */
   availability: "Open to freelance projects and new roles",
 
-  /** Optional portrait, e.g. "/ahmad.jpg" after placing a square-ish photo in /public. Empty = geometric AE mark. */
   photo: "",
 
-  /** Placeholder only. The real address comes from the SITE_URL environment variable (see .env.example and README), which also turns indexing on. */
   siteUrl: "https://ahmadelwan.dev",
 
-  /** Any empty value is hidden automatically. */
   contact: {
     email: "ahmadmelwan02@gmail.com",
     linkedin: "https://www.linkedin.com/in/ahmadelwan/",
     github: "https://github.com/AhmadElwan",
-    cv: "", // e.g. "/ahmad-elwan-cv.pdf" after placing the file in /public
+    cv: "",
   },
 
-  /**
-   * Contact form delivery. Messages are sent to your email by a form service.
-   * Option A (recommended): get a free access key at https://web3forms.com (enter your email,
-   * the key is emailed to you) and paste it into web3formsKey.
-   * Option B: create a form at https://formspree.io and paste its URL into formEndpoint.
-   * Until one of these is set, the form falls back to opening the visitor's email app.
-   */
   form: {
-    web3formsKey: "a1f3af4d-92e2-44e5-9607-6a626eb4e63c", // public by design; emails go to ahmadmelwan02@gmail.com
+    web3formsKey: "a1f3af4d-92e2-44e5-9607-6a626eb4e63c",
     formEndpoint: "",
   },
 
-  // Wrap a phrase in *asterisks* to render it in the accent italic style.
   headline: "I build for the web end to end, and I understand *what makes it grow*.",
   intro:
     "Software engineer at Optimum Partners in Amman. I work on a major US publisher's Next.js website today, and I've also built backend microservices, WordPress sites, and the SEO, ads and CRM systems behind a company's growth.",
@@ -72,7 +51,6 @@ export const profile = {
     { value: "3 fields", label: "front-end, back-end, digital growth" },
   ],
 
-  /** What a client or recruiter can hire you for. Plain descriptions, no outcomes. */
   services: [
     {
       title: "Websites & web apps",
@@ -112,8 +90,7 @@ export const profile = {
       {
         label: "Front-end",
         meta: "Client: a major US media publisher · since Sep 2025",
-        summary:
-          "Part of the client's team, working mostly on their Next.js website.",
+        summary: "Part of the client's team, working mostly on their Next.js website.",
         points: [
           "Ship new features and fix bugs in weekly sprints, driven by requests from the product and editorial teams.",
           "Worked on consent management with Ketch and on optimizing the site's ads system.",
@@ -156,8 +133,7 @@ export const profile = {
     ] satisfies WorkArea[],
   },
 
-  projectsNote:
-    "Client work is described in general terms because of client confidentiality.",
+  projectsNote: "Client work is described in general terms because of client confidentiality.",
 
   projects: [
     {
@@ -179,16 +155,14 @@ export const profile = {
     {
       title: "Registration wall",
       kind: "Special project",
-      summary:
-        "Worked on a registration wall, a flow that asks readers to sign up in order to keep reading.",
+      summary: "Worked on a registration wall, a flow that asks readers to sign up in order to keep reading.",
       tags: ["Next.js", "User flows"],
       confidential: true,
     },
     {
       title: "Consent & ads",
       kind: "Platform work",
-      summary:
-        "Worked on consent management with Ketch and on optimizing the site's ads system.",
+      summary: "Worked on consent management with Ketch and on optimizing the site's ads system.",
       tags: ["Ketch", "Ads", "GCP"],
       confidential: true,
     },

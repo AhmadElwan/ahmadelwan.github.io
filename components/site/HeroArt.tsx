@@ -1,9 +1,9 @@
+import Image from "next/image";
 import { profile } from "@/data/profile";
 import { BranchParts } from "./Branch";
 
 const RING = "SOFTWARE ENGINEER · NEXT.JS · PYTHON · SEO · HUBSPOT · WORDPRESS · ";
 
-/** Geometric hero graphic: red disc, ink quarter-circle, rotating text ring and the AE mark. No data, just shapes. */
 export function HeroArt() {
   return (
     <div className="s-art" aria-hidden="true">
@@ -36,8 +36,7 @@ export function HeroArt() {
         )}
       </svg>
       {profile.photo ? (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img className="s-photo" src={profile.photo} alt="" width={340} height={340} />
+        <Image className="s-photo" src={profile.photo} alt="" width={340} height={340} />
       ) : null}
     </div>
   );

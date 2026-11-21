@@ -24,24 +24,25 @@ export const metadata: Metadata = {
   },
   twitter: { card: "summary_large_image", title, description: profile.seo.description },
   formatDetection: { telephone: false },
-  // Indexing is switched on by setting the SITE_URL environment variable (see lib/config.ts).
+
   robots: isIndexable ? { index: true, follow: true } : { index: false, follow: false },
 };
 
 export const viewport: Viewport = { themeColor: "#f4f0e4", width: "device-width", initialScale: 1 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  // Start downloading the fonts used above the fold right away.
   for (const f of ["fraunces-latin-wght-normal", "inter-latin-wght-normal"]) {
     preload(`/fonts/${f}.woff2`, { as: "font", type: "font/woff2", crossOrigin: "anonymous" });
   }
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <script dangerouslySetInnerHTML={{ __html: "/*js-flag*/document.documentElement.className+=' js';" }} />
+        <script dangerouslySetInnerHTML={{ __html: 'document.documentElement.classList.add("js");' }} />
       </head>
       <body>
-        <a className="skip" href="#main">Skip to content</a>
+        <a className="skip" href="#main">
+          Skip to content
+        </a>
         {children}
       </body>
     </html>

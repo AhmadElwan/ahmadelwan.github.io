@@ -1,89 +1,65 @@
-# Ahmad Elwan: portfolio
+# Ahmad Elwan
 
-Next.js (App Router) + TypeScript portfolio. No CSS framework, almost no client-side JavaScript (small inline scripts only), fonts self-hosted from `public/fonts`.
+Personal portfolio: [ahmadelwan.github.io](https://ahmadelwan.github.io)
 
-## Run it
+A static Next.js site (App Router, TypeScript) with no CSS framework and self-hosted fonts. It is exported to plain files and deployed to GitHub Pages on every push to `main`.
+
+## Getting started
 
 ```bash
 npm install
-npm run dev      # http://localhost:3000
-npm run check    # type-check, lint and production build
-npm run build && npm start
+npm run dev
 ```
 
-## The site
+Requires Node.js 20.9 or newer. The dev server runs at http://localhost:3000.
 
-One design: Swiss type and grid in the Coffee & Olive palette (warm cream, dark coffee brown and olive green), softened with rounded cards, pill buttons, a floating nav and soft shadows (the "Soft modern layer" block in `app/site.css`). Sections: hero (availability line, rotating text-ring graphic, CTAs), tech marquee, Services ("What I can do for you"), Selected work (abstract visual cards, no client material), Experience, About, Skills, Posts (appears automatically once `data/posts.ts` has posts) and an olive contact block with the form.
+## Scripts
 
-- Components: `components/site/` (`SitePage.tsx`, `HeroArt.tsx`, `covers.tsx` for the project illustrations). Styles: `app/site.css`. Layout/metadata: `app/layout.tsx`.
-- The site stays `noindex` (and `robots.txt` disallows everything) until the environment variable `SITE_URL` is set to the real domain. Local runs and Vercel preview deployments are always `noindex`. See "Deploy" below.
-- Optional portrait: put a photo in `/public` and set `photo` in `data/profile.ts`; it replaces the AE mark in the hero graphic.
+| Command                | Purpose                                       |
+| ---------------------- | --------------------------------------------- |
+| `npm run dev`          | Start the development server                  |
+| `npm run build`        | Export the static site to `out/`              |
+| `npm run typecheck`    | Type-check with TypeScript                    |
+| `npm run lint`         | Lint with ESLint                              |
+| `npm run format`       | Format the code with Prettier                 |
+| `npm run format:check` | Verify formatting                             |
+| `npm run check`        | Type-check, lint, verify formatting and build |
 
-## LinkedIn posts and brand kit
+## Project structure
 
-- Add each post to **`data/posts.ts`** (title, date, summary, LinkedIn URL, image). Put the image in `public/posts/`. The latest 3 then appear in the Posts section. Never name the US publishing client in a post.
-- **`brand/`** is the LinkedIn kit in the current look: `brand/out/` has two banners (light and dark), the profile picture (photo version and AE monogram version), and four sample post images. Re-render or make new ones with `python3 brand/render.py <template> --data '{...}' --out <file>` (see the header of `brand/render.py`). Templates: `banner`, `banner-dark`, `profile`, `post-statement`, `post-list`, `post-question`, `post-stat`. Every template takes `"theme": "olive|red|blue|green|amber|violet|teal"` (default `olive`); post templates also take `"bg": "paper|ink|accent"`.
-- Your photo for the profile picture is `brand/assets/ahmad.jpg` (400px; a higher-resolution original will look sharper).
+```
+app/            routes, layout, metadata, icons, global styles
+components/     page sections, SVG artwork and client components
+data/           all site content (profile.ts) and LinkedIn posts (posts.ts)
+lib/            environment-driven configuration
+public/         self-hosted fonts and post images
+brand/          LinkedIn banners, profile pictures and post templates
+```
 
-## Edit your content
+All text, links, projects and skills live in `data/profile.ts`. Posts added to `data/posts.ts` appear automatically in a Posts section.
 
-Everything lives in **`data/profile.ts`**. Change text, projects, skills and links there; no component edits needed.
+## Configuration
 
-Before you deploy:
+Environment variables (see `.env.example`):
 
-1. **Contact links:** fill `contact.email`, `contact.linkedin`, `contact.github` (and `contact.cv` after dropping a PDF into `/public`). Empty values are hidden automatically.
-2. **Domain:** set `siteUrl` to your real domain. It feeds the canonical URL, sitemap, robots.txt and social cards.
-3. **Add numbers** to the project cards if you have them (traffic, performance, leads). None were invented.
+| Variable        | Purpose                                                              |
+| --------------- | -------------------------------------------------------------------- |
+| `SITE_URL`      | Public address of the site. Setting it also enables search indexing. |
+| `WEB3FORMS_KEY` | Public access key for the contact form (overrides `data/profile.ts`) |
+| `FORM_ENDPOINT` | Alternative form endpoint, such as a Formspree URL                   |
 
-## Contact form (sends to your email)
+Without `SITE_URL` the site is served with `noindex`. Without a form key or endpoint, the contact form opens the visitor's email client with the message prefilled.
 
-The form in the contact section posts to a form service, which emails you every submission. Setup takes about two minutes:
+## Deployment
 
-1. Go to <https://web3forms.com>, enter `ahmadmelwan02@gmail.com`, and they email you a free **access key**.
-2. Paste it into `form.web3formsKey` in `data/profile.ts` (already done for ahmadmelwan02@gmail.com), or set the environment variable `WEB3FORMS_KEY` on your host.
-3. Redeploy. Done. (In your Web3Forms dashboard you can also restrict the key to your domain.)
+`.github/workflows/deploy.yml` builds the site with `SITE_URL=https://ahmadelwan.github.io` and publishes `out/` to GitHub Pages. Update that value if the site moves to a custom domain.
 
-Prefer Formspree? Create a form at <https://formspree.io> and set its URL as `FORM_ENDPOINT` (or `form.formEndpoint`) instead.
+## Brand kit
 
-Until one of these is set, the form falls back to opening the visitor's email app with the message prefilled. The access key is meant to be public (it can only send to your email), and a hidden honeypot field catches most bots.
+`brand/` renders the LinkedIn assets from HTML templates with Playwright:
 
-## Confidentiality
+```bash
+python3 brand/render.py <template> --data '<json>' --out <file.png>
+```
 
-The US publishing client must never be named anywhere in this repo (text, metadata, alt text, filenames, commits). The site refers to them as "a major US media publisher".
-
-## What's included
-
-- Semantic HTML, skip link, keyboard focus styles, reduced-motion support
-- SEO: metadata, Open Graph / Twitter cards (`app/opengraph-image.png`, made from `brand/templates/share-card.html`), JSON-LD `Person`, `sitemap.xml`, `robots.txt`, web manifest, favicon and Apple touch icon
-- Custom 404 and error pages, self-hosted fonts with size-matched fallbacks (no layout jump)
-- Measured with Lighthouse on a mobile profile: Performance 100, Accessibility 100, Best Practices 100, SEO 100
-
-## Deploy
-
-The site is exported as plain static files (`output: "export"` in `next.config.mjs`), so it runs on any static host. It is set up for **GitHub Pages**:
-
-1. The repository is named `ahmadelwan.github.io` and is public (GitHub Pages is free for public repositories).
-2. In the repository settings, Pages uses **GitHub Actions** as its source.
-3. `.github/workflows/deploy.yml` builds the site and publishes it on every push to `main`. The public address is set there as `SITE_URL` (which also switches search-engine indexing on).
-4. To use a custom domain later: buy it, add it under Settings, Pages, Custom domain, set the DNS records GitHub shows, and change `SITE_URL` in `deploy.yml` to the new address.
-
-Other hosts (Vercel, Netlify, Cloudflare Pages) also work: build with `npm run build` and publish the `out` folder, with `SITE_URL` set. Static hosts that allow custom headers should add the security headers (CSP, HSTS, frame and referrer policies); GitHub Pages cannot.
-
-After any deploy: open the homepage, send a test message through the form, and check the link preview by pasting the URL into LinkedIn's Post Inspector (<https://www.linkedin.com/post-inspector/>). Then submit `/sitemap.xml` in Google Search Console.
-
-Optional: put a PDF CV at `public/ahmad-elwan-cv.pdf` and set `contact.cv` to `"/ahmad-elwan-cv.pdf"` in `data/profile.ts`, and set `photo` to show your portrait in the hero.
-
-Checks before every release: `npm run check`.
-
-## The AE logo and the olive branch
-- **Logo:** an "AE" monogram (Fraunces letters drawn as outlines) on a rounded coffee-brown tile with a small olive dot. SVG and PNG files are in `brand/assets/` and `brand/out/` (`ae-logo*`, plus the square `ae-logo-app-icon`). On the site it is the `Logo` component (`components/site/Logo.tsx`; the favicon is `app/icon.svg`), and in the LinkedIn kit it is the `[data-mark]` tile created by `brand/brand.js` (it flips to a cream tile on dark post backgrounds).
-- **Olive branch:** a stem with leaves and hanging olives, used as the decorative motif in the post images (top-right corner), the banners, and the website (hero art and contact section). Source files are `olive-branch*.svg` in `brand/assets/`. On the site it is `components/site/Branch.tsx`; in the kit it is injected by `brand/brand.js` into `.deco.b` and `[data-branch]`. Colours come from the CSS variables `--br-s` (stem), `--br-l`/`--br-l2` (leaves), `--br-o` (olives) and `--br-h` (highlights).
-
-## Typography
-- **Fraunces** (variable, with italic) for headlines and key text on the site and in every LinkedIn image (the accent words are set in Fraunces italic).
-- **Bricolage Grotesque** for the big headline and contact links in the contact section only (`.s-contact` rules at the end of `app/site.css`).
-- **Inter** for body text and **JetBrains Mono** for small labels.
-The font variables are `--display` and `--display-contact` in `app/site.css` and `--display` in `brand/brand.css`.
-
-## Colours
-The palette lives in the `:root` block at the top of `app/site.css` (`--paper`, `--ink`, `--accent`, `--acc-text` for accent-coloured text on paper, `--on` for text on top of the accent, `--acc-rgb` for glows) and in `brand/brand.css` for the LinkedIn kit. To change the whole identity, change those values.
+Templates: `banner`, `banner-dark`, `profile`, `post-statement`, `post-list`, `post-question`, `post-stat`, `share-card`. Data keys: `theme`, `bg` (`paper`, `ink`, `accent`), `size` (`l`, `m`, `s`), `kicker`, `title`, `sub`, `big`, `items`, `footer`, `pill`, `photo`. Wrap a word in `*asterisks*` to render it as an accent.
