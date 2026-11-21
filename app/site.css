@@ -1677,3 +1677,28 @@ body {
     gap: 6px;
   }
 }
+
+/* form feedback: a clear confirmation instead of bare text */
+.s-status[data-kind="ok"] {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-self: start;
+  padding: 12px 18px 12px 14px;
+  border-radius: 999px;
+  background: var(--paper);
+  color: var(--ink);
+  font-weight: 600;
+}
+.s-status[data-kind="ok"]::before {
+  content: "";
+  flex: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--accent-deep, #5d6b36) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 22'%3E%3Cpath d='M6 11.5l3.2 3.2L16 7.8' fill='none' stroke='%23f4f0e4' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 100% no-repeat;
+}
+.s-form button:disabled {
+  opacity: 0.7;
+  cursor: progress;
+}

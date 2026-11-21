@@ -26,7 +26,7 @@ export const formScript = `
     var endpoint = form.getAttribute("data-endpoint") || "";
     var key = form.getAttribute("data-key") || "";
     var f = form.elements;
-    if (f.botcheck && f.botcheck.checked) { say("Thanks, your message was sent.", "ok"); form.reset(); return; }
+    if (f.botcheck && f.botcheck.checked) { say("Thanks, your message is in. I will reply by email.", "ok"); form.reset(); return; }
     var name = f.name.value.trim(), email = f.email.value.trim(), message = f.message.value.trim();
     if (!name || !email || !message) { say("Please fill in all fields.", "error"); return; }
     var subject = "Portfolio message from " + name;
@@ -48,7 +48,7 @@ export const formScript = `
       body: JSON.stringify(payload)
     }).then(function (res) {
       return res.json().catch(function () { return {}; }).then(function (data) {
-        if (res.ok && data.success !== false) { say("Thanks, your message was sent.", "ok"); form.reset(); }
+        if (res.ok && data.success !== false) { say("Thanks, your message is in. I will reply by email.", "ok"); form.reset(); }
         else throw new Error("failed");
       });
     }).catch(function () {

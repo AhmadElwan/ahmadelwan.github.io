@@ -68,7 +68,7 @@ export const profile = {
 
   facts: [
     { value: "2.5 yrs", label: "building software professionally" },
-    { value: "Level 1", label: "highest of five intermediate levels" },
+    { value: "Level 1", label: "top of the five intermediate levels" },
     { value: "3 fields", label: "front-end, back-end, digital growth" },
   ],
 

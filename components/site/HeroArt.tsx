@@ -26,7 +26,7 @@ export function HeroArt() {
             </textPath>
           </text>
         </g>
-        <g className="art-branch" transform="translate(514 2) rotate(-44) scale(-.25 .25) translate(0 -3)">
+        <g className="art-branch" transform="translate(528 2) rotate(-44) scale(-.2 .2) translate(0 -3)">
           <BranchParts />
         </g>
         {!profile.photo && (
