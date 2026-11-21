@@ -39,9 +39,6 @@ export function HeroArt() {
         // eslint-disable-next-line @next/next/no-img-element
         <img className="s-photo" src={profile.photo} alt="" width={340} height={340} />
       ) : null}
-      <p className="s-art-cap">
-        Amman, JO <span>31.95°N 35.93°E</span>
-      </p>
     </div>
   );
 }
