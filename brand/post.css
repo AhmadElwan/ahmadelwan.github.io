@@ -24,3 +24,5 @@ ol.rows li { display: flex; align-items: center; gap: 26px; padding: 26px 30px; 
 ol.rows .n { flex: none; width: 70px; height: 70px; border-radius: 50%; background: var(--accent); color: var(--on-accent); display: grid; place-items: center; font-size: 32px; font-weight: 800; letter-spacing: 0; }
 .card[data-bg="accent"] ol.rows .n { background: var(--ink); color: var(--paper); }
 .card[data-bg="accent"] ol.rows li { color: var(--on-accent); }
+/* footer badge: a small olive leaf instead of an arrow */
+.foot .go::before { content: ""; width: 34px; height: 18px; border-radius: 100% 0 100% 0; background: currentColor; transform: rotate(-38deg); }

@@ -1381,7 +1381,7 @@ body {
   --br-s: var(--ink);
   --br-l: var(--accent);
   --br-l2: var(--acc-text);
-  --br-o: var(--ink);
+  --br-o: #6b7b32;
   --br-h: var(--paper);
 }
 .lg-bg { fill: var(--ink); }
@@ -1423,7 +1423,7 @@ body {
   --br-s: var(--ink);
   --br-l: var(--paper);
   --br-l2: color-mix(in srgb, var(--paper) 78%, var(--accent));
-  --br-o: var(--ink);
+  --br-o: #6b7b32;
   --br-h: var(--accent);
 }
 .s-foot-id {

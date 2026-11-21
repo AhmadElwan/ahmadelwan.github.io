@@ -37,9 +37,9 @@ h1, h2, .who b, .big, ol.rows .t { font-family: var(--display); }
 .card[data-bg="ink"] .mk-bg { fill: var(--paper); } .card[data-bg="ink"] .lg-fg { fill: var(--ink); }
 
 /* Olive branch: the decorative motif for posts and banners. Colours come from these variables. */
-:root { --br-s: var(--ink); --br-l: var(--accent); --br-l2: var(--acc-text); --br-o: var(--ink); --br-h: var(--paper); }
-.card[data-bg="ink"]    { --br-s: var(--paper); --br-l: var(--accent); --br-l2: color-mix(in srgb, var(--accent) 68%, var(--paper)); --br-o: var(--paper); --br-h: var(--ink); }
-.card[data-bg="accent"] { --br-s: var(--ink); --br-l: var(--paper); --br-l2: color-mix(in srgb, var(--paper) 78%, var(--accent)); --br-o: var(--ink); --br-h: var(--accent); }
+:root { --br-s: var(--ink); --br-l: var(--accent); --br-l2: var(--acc-text); --br-o: #6b7b32; --br-h: var(--paper); }
+.card[data-bg="ink"]    { --br-s: var(--paper); --br-l: var(--accent); --br-l2: color-mix(in srgb, var(--accent) 68%, var(--paper)); --br-o: #c3cf7a; --br-h: var(--ink); }
+.card[data-bg="accent"] { --br-s: var(--ink); --br-l: var(--paper); --br-l2: color-mix(in srgb, var(--paper) 78%, var(--accent)); --br-o: #4d5c25; --br-h: var(--accent); }
 .branch { display: block; width: 100%; height: auto; overflow: visible; }
 .br-st { fill: none; stroke: var(--br-s); stroke-width: 7; stroke-linecap: round; }
 .br-st2 { fill: none; stroke: var(--br-s); stroke-width: 4.5; stroke-linecap: round; }
