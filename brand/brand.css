@@ -1,0 +1,48 @@
+/* Brand tokens + fonts shared by every template. Fonts load from public/fonts.
+   Themes: pass "theme" in the data JSON (olive | red | blue | green | amber | violet | teal). Default olive = Coffee & Olive, the current identity. */
+@font-face { font-family: "Inter"; font-weight: 100 900; src: url("../public/fonts/inter-latin-wght-normal.woff2") format("woff2"); }
+@font-face { font-family: "Fraunces"; font-style: normal; font-weight: 100 900; src: url("../public/fonts/fraunces-latin-wght-normal.woff2") format("woff2"); }
+@font-face { font-family: "Fraunces"; font-style: italic; font-weight: 100 900; src: url("../public/fonts/fraunces-latin-wght-italic.woff2") format("woff2"); }
+@font-face { font-family: "Mono"; font-weight: 500; src: url("../public/fonts/jetbrains-mono-latin-500-normal.woff2") format("woff2"); }
+
+:root {
+  /* Coffee & Olive (default) */
+  --paper: #f4f0e4; --ink: #2a1d16; --accent: #8a9a5b; --acc-text: #5d6b36; --on-accent: #2a1d16; --white: #ffffff; --muted: #716b5c;
+  --sans: "Inter", system-ui, sans-serif; --display: "Fraunces", Georgia, serif; --mono: "Mono", ui-monospace, monospace;
+}
+:root[data-theme="red"]    { --paper: #f1efe9; --ink: #0d0d0d; --accent: #e8281e; --acc-text: #e8281e; --on-accent: #ffffff; --muted: #6b6a66; }
+:root[data-theme="blue"]   { --paper: #f2f4fa; --ink: #0a1024; --accent: #2f5bff; --acc-text: #2f5bff; --on-accent: #ffffff; --muted: #5b6482; }
+:root[data-theme="green"]  { --paper: #f3f5ee; --ink: #0b1f17; --accent: #1fbf75; --acc-text: #0b8f55; --on-accent: #0b1f17; --muted: #55655c; }
+:root[data-theme="amber"]  { --paper: #faf5ea; --ink: #17110a; --accent: #ff9f1c; --acc-text: #b85f00; --on-accent: #17110a; --muted: #6f6455; }
+:root[data-theme="violet"] { --paper: #f5f4fd; --ink: #100c2b; --accent: #6c5ce7; --acc-text: #6c5ce7; --on-accent: #ffffff; --muted: #5d5a7e; }
+:root[data-theme="teal"]   { --paper: #f3efe6; --ink: #0b1b1c; --accent: #0f8b8d; --acc-text: #0f8b8d; --on-accent: #ffffff; --muted: #566464; }
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 100%; height: 100%; }
+body { font-family: var(--sans); color: var(--ink); background: var(--paper); overflow: hidden; -webkit-font-smoothing: antialiased; }
+.mono { font-family: var(--mono); font-weight: 500; letter-spacing: .08em; text-transform: uppercase; }
+.mark { display: block; }
+.mk-bg { fill: var(--ink); } .lg-fg { fill: var(--paper); } .lg-dot { fill: var(--accent); }
+
+/* card backgrounds for posts: paper | ink | accent */
+.card { position: relative; width: 100%; height: 100%; overflow: hidden; }
+.card[data-bg="paper"] { background: var(--paper); color: var(--ink); --em: var(--acc-text); --sub: var(--muted); --rule: color-mix(in srgb, var(--ink) 14%, transparent); --row: #fff; --disc: var(--accent); --disc2: var(--ink); --chip: var(--ink); --chip-t: var(--paper); }
+.card[data-bg="ink"]   { background: var(--ink); color: var(--paper); --em: var(--accent); --sub: color-mix(in srgb, var(--paper) 70%, transparent); --rule: color-mix(in srgb, var(--paper) 20%, transparent); --row: rgba(255,255,255,.08); --disc: var(--accent); --disc2: var(--paper); --chip: var(--paper); --chip-t: var(--ink); }
+.card[data-bg="accent"]{ background: var(--accent); color: var(--on-accent); --em: var(--on-accent); --sub: color-mix(in srgb, var(--on-accent) 78%, transparent); --rule: color-mix(in srgb, var(--on-accent) 30%, transparent); --row: rgba(255,255,255,.18); --disc: var(--paper); --disc2: var(--ink); --chip: var(--ink); --chip-t: var(--paper); }
+.card[data-bg="accent"] .mk-bg { fill: var(--ink); }
+em { font-style: italic; color: var(--em); }
+/* Typography: Fraunces for all headlines and key text, Inter for supporting text, mono for small labels (fixed for every post) */
+h1, h2, .who b, .big, ol.rows .t { font-family: var(--display); }
+/* on dark cards the logo tile flips so it stays visible */
+.card[data-bg="ink"] .mk-bg { fill: var(--paper); } .card[data-bg="ink"] .lg-fg { fill: var(--ink); }
+
+/* Olive branch: the decorative motif for posts and banners. Colours come from these variables. */
+:root { --br-s: var(--ink); --br-l: var(--accent); --br-l2: var(--acc-text); --br-o: var(--ink); --br-h: var(--paper); }
+.card[data-bg="ink"]    { --br-s: var(--paper); --br-l: var(--accent); --br-l2: color-mix(in srgb, var(--accent) 68%, var(--paper)); --br-o: var(--paper); --br-h: var(--ink); }
+.card[data-bg="accent"] { --br-s: var(--ink); --br-l: var(--paper); --br-l2: color-mix(in srgb, var(--paper) 78%, var(--accent)); --br-o: var(--ink); --br-h: var(--accent); }
+.branch { display: block; width: 100%; height: auto; overflow: visible; }
+.br-st { fill: none; stroke: var(--br-s); stroke-width: 7; stroke-linecap: round; }
+.br-st2 { fill: none; stroke: var(--br-s); stroke-width: 4.5; stroke-linecap: round; }
+.br-lf { fill: var(--br-l); } .br-lf2 { fill: var(--br-l2); }
+.br-rib { fill: none; stroke: var(--br-h); stroke-width: 2; stroke-linecap: round; opacity: .55; }
+.br-ol { fill: var(--br-o); } .br-hi { fill: var(--br-h); opacity: .85; }

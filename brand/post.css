@@ -1,0 +1,26 @@
+/* Shared layout for the 1080x1350 post templates. */
+.card { padding: 76px 80px; display: flex; flex-direction: column; }
+.top { display: flex; align-items: center; gap: 22px; position: relative; z-index: 2; }
+.top .mark { width: 86px; height: 86px; }
+.who b { display: block; font-size: 32px; font-weight: 600; letter-spacing: -.02em; line-height: 1.1; }
+.who span { font-size: 15px; color: var(--sub); }
+.deco { position: absolute; border-radius: 50%; z-index: 0; }
+.deco.a { display: none; }
+/* olive branch: grows in from the top-right corner */
+.deco.b { width: 700px; right: -96px; top: 10px; left: auto; height: auto; border-radius: 0; background: none; transform: rotate(14deg) scaleX(-1); transform-origin: 50% 50%; }
+.deco.c { width: 520px; height: 520px; left: -250px; bottom: -280px; background: var(--disc); opacity: .16; }
+.body { position: relative; z-index: 2; flex: 1; display: flex; flex-direction: column; justify-content: center; padding-top: 30px; }
+.kick { align-self: flex-start; padding: 10px 20px; border-radius: 999px; background: var(--chip); color: var(--chip-t); font-size: 16px; margin-bottom: 38px; }
+h1, h2 { font-weight: 600; letter-spacing: -.035em; line-height: 1.0; overflow-wrap: break-word; }
+.card[data-size="l"] h1 { font-size: 108px; } .card[data-size="m"] h1 { font-size: 90px; } .card[data-size="s"] h1 { font-size: 74px; }
+.sub { margin-top: 38px; font-size: 40px; line-height: 1.22; letter-spacing: -.02em; color: var(--sub); max-width: 880px; font-weight: 500; }
+.foot { position: relative; z-index: 2; display: flex; align-items: center; justify-content: space-between; padding-top: 34px; border-top: 2px solid var(--rule); font-size: 22px; font-weight: 600; }
+.foot .go { width: 70px; height: 70px; border-radius: 50%; background: var(--accent); color: var(--on-accent); display: grid; place-items: center; font-size: 34px; font-weight: 700; }
+.card[data-bg="accent"] .foot .go { background: var(--ink); color: var(--paper); }
+/* rows (list + options) */
+ol.rows { list-style: none; display: grid; gap: 20px; margin-top: 44px; }
+ol.rows li { display: flex; align-items: center; gap: 26px; padding: 26px 30px; border-radius: 36px; background: var(--row); font-size: 42px; line-height: 1.12; letter-spacing: -.02em; font-weight: 600; }
+.card[data-bg="paper"] ol.rows li { box-shadow: 0 1px 2px rgba(13,13,13,.05), 0 18px 34px -20px rgba(13,13,13,.28); }
+ol.rows .n { flex: none; width: 70px; height: 70px; border-radius: 50%; background: var(--accent); color: var(--on-accent); display: grid; place-items: center; font-size: 32px; font-weight: 800; letter-spacing: 0; }
+.card[data-bg="accent"] ol.rows .n { background: var(--ink); color: var(--paper); }
+.card[data-bg="accent"] ol.rows li { color: var(--on-accent); }
