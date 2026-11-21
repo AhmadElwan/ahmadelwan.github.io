@@ -1544,3 +1544,136 @@ body {
   max-width: 46ch;
   color: var(--muted);
 }
+
+/* ───────── UI audit fixes ───────── */
+
+/* rounded cards must never carry a leftover straight divider (it shows up as a curved line) */
+.s-facts div,
+.s-facts div + div {
+  border: 0;
+}
+.s-svc-c,
+.s-svc-c + .s-svc-c,
+.s-svc-c:nth-child(n) {
+  border: 1.5px solid rgba(241, 239, 233, 0.16);
+}
+.s-area,
+.s-area:nth-child(even),
+.s-area:nth-child(n + 3),
+.s-area + .s-area {
+  border: var(--hair);
+}
+
+/* the floating nav stays cream over dark sections instead of turning grey */
+.s-top-in {
+  background: rgba(244, 240, 228, 0.94);
+}
+
+/* comfortable tap targets */
+.s-top nav a {
+  min-height: 40px;
+  display: inline-flex;
+  align-items: center;
+}
+.s-foot a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding-inline: 4px;
+}
+.s-art-cap {
+  font-size: 12px;
+}
+
+/* small-screen menu (the full nav is hidden below 920px) */
+.s-menu {
+  display: none;
+}
+@media (max-width: 920px) {
+  .s-menu {
+    display: block;
+  }
+  .s-menu summary {
+    list-style: none;
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0 18px;
+    border: 1.5px solid var(--ink);
+    border-radius: 999px;
+    font: 600 14.5px/1 var(--sans);
+    cursor: pointer;
+    user-select: none;
+  }
+  .s-menu summary::-webkit-details-marker {
+    display: none;
+  }
+  .s-menu[open] summary {
+    background: var(--ink);
+    color: var(--paper);
+  }
+  .s-menu ul {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: calc(100% + 8px);
+    display: grid;
+    padding: 8px;
+    border: var(--hair);
+    border-radius: 24px;
+    background: rgba(244, 240, 228, 0.98);
+    box-shadow: var(--soft);
+  }
+  .s-menu li a {
+    display: flex;
+    align-items: center;
+    min-height: 48px;
+    padding: 0 16px;
+    border-radius: 16px;
+    font: 600 17px/1 var(--sans);
+    text-decoration: none;
+  }
+  .s-menu li a:hover,
+  .s-menu li a:focus-visible {
+    background: rgba(42, 29, 22, 0.07);
+  }
+  .s-top-in {
+    position: relative;
+  }
+  .s-top-r {
+    gap: 8px;
+  }
+}
+
+/* shorter project illustrations on phones so the page is not endless */
+@media (max-width: 680px) {
+  .s-cover {
+    aspect-ratio: 16 / 9;
+  }
+}
+
+/* contact links read as buttons without icons */
+.s-links a span {
+  overflow-wrap: anywhere;
+}
+.s-svc-c:hover,
+.s-svc-c:nth-child(n):hover {
+  border-color: var(--accent);
+}
+@media (max-width: 400px) {
+  .s-top-in {
+    padding-left: 14px;
+  }
+  .s-mark {
+    font-size: 14px;
+  }
+  .s-menu summary {
+    padding: 0 14px;
+  }
+  .s-pill {
+    padding: 11px 16px;
+  }
+  .s-top-r {
+    gap: 6px;
+  }
+}

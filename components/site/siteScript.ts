@@ -2,6 +2,14 @@
 export const siteScript = `/*swiss-fx*/
 (function () {
   try {
+    var menu = document.querySelector(".s-menu");
+    if (menu) {
+      menu.addEventListener("click", function (e) { if (e.target.closest && e.target.closest("a")) menu.removeAttribute("open"); });
+      document.addEventListener("click", function (e) { if (menu.hasAttribute("open") && !menu.contains(e.target)) menu.removeAttribute("open"); });
+      document.addEventListener("keydown", function (e) { if (e.key === "Escape" && menu.hasAttribute("open")) { menu.removeAttribute("open"); menu.querySelector("summary").focus(); } });
+    }
+  } catch (err) {}
+  try {
     var items = [].slice.call(document.querySelectorAll("[data-rv]"));
     var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if ("IntersectionObserver" in window && !reduce) {

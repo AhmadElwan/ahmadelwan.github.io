@@ -69,7 +69,7 @@ const covers: ReactElement[] = [
   </>,
   // 4 Agentic newsletters: nodes into a letter
   <>
-    {bg("w")}
+    {bg("p")}
     {[60, 125, 190].map((y, i) => (
       <g key={y}>
         <path className="si3" d={`M82 ${y}L170 125`} fill="none" />
@@ -78,7 +78,7 @@ const covers: ReactElement[] = [
     ))}
     <path className="si3" d="M200 125H282" fill="none" />
     <circle className="r" cx="186" cy="125" r="26" />
-    <rect className="p si3" x="282" y="92" width="96" height="66" />
+    <rect className="w si3" x="282" y="92" width="96" height="66" />
     <path className="si3" d="M282 92L330 130L378 92" fill="none" />
   </>,
   // 5 HR platform: calendar + clock

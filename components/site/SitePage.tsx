@@ -36,6 +36,17 @@ export function SitePage() {
           </nav>
           <div className="s-top-r">
             <p className="s-time">Amman <Clock /></p>
+            <details className="s-menu">
+              <summary aria-label="Menu"><span>Menu</span></summary>
+              <ul>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#work">Work</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#about">About</a></li>
+                {hasPosts && <li><a href="#posts">Posts</a></li>}
+                <li><a href="#contact">Contact</a></li>
+              </ul>
+            </details>
             <a className="s-pill" href="#contact">Hire me</a>
           </div>
         </div>
@@ -52,8 +63,8 @@ export function SitePage() {
             <h1 id="hero-title"><Accent text={profile.headline} /></h1>
             <p className="s-intro">{profile.intro}</p>
             <p className="s-btns">
-              <a className="s-btn s-btn-red" href="#contact">Start a project <span aria-hidden="true">→</span></a>
-              <a className="s-btn" href="#work">See the work <span aria-hidden="true">↓</span></a>
+              <a className="s-btn s-btn-red" href="#contact">Start a project</a>
+              <a className="s-btn" href="#work">See the work</a>
               {profile.contact.cv && <a className="s-btn s-btn-ghost" href={profile.contact.cv}>Download CV</a>}
             </p>
           </div>
@@ -95,7 +106,7 @@ export function SitePage() {
               ))}
             </ol>
             <p className="s-svc-cta" data-rv>
-              <a className="s-btn s-btn-light" href="#contact">Tell me about your project <span aria-hidden="true">→</span></a>
+              <a className="s-btn s-btn-light" href="#contact">Tell me about your project</a>
             </p>
           </div>
         </section>
@@ -114,7 +125,6 @@ export function SitePage() {
                   <h3>{p.title}</h3>
                   <p>{p.summary}</p>
                   <ul className="s-chips s-chips-sm">
-                    {p.confidential && <li className="s-chip-conf">Client work · details private</li>}
                     {p.tags.map((t) => <li key={t}>{t}</li>)}
                   </ul>
                 </div>
@@ -190,7 +200,7 @@ export function SitePage() {
                   <li key={l.label}>
                     <a href={l.href} {...(l.href.startsWith("http") ? { rel: "noopener noreferrer", target: "_blank" } : {})}>
                       <small>{l.label}</small>
-                      <span>{l.display} ↗</span>
+                      <span>{l.display}</span>
                     </a>
                   </li>
                 ))}
@@ -200,7 +210,7 @@ export function SitePage() {
                 <label><span>Email</span><input name="email" type="email" autoComplete="email" required maxLength={200} /></label>
                 <label><span>Message</span><textarea name="message" rows={4} required maxLength={4000} /></label>
                 <label className="hp" aria-hidden="true"><span>Leave this empty</span><input type="checkbox" name="botcheck" tabIndex={-1} autoComplete="off" /></label>
-                <button type="submit">Send message →</button>
+                <button type="submit">Send message</button>
                 <p id="form-status" className="s-status" role="status" aria-live="polite" />
               </form>
             </div>
@@ -211,7 +221,7 @@ export function SitePage() {
       <footer className="s-foot">
         <div className="s-wrap s-foot-in">
           <span className="s-foot-id"><Logo className="s-foot-sym" />© <span suppressHydrationWarning>{new Date().getFullYear()}</span> {profile.name} · {profile.location}</span>
-          <a href="#top">Back to top ↑</a>
+          <a href="#top">Back to top</a>
         </div>
       </footer>
 
